@@ -1,73 +1,72 @@
-# # todo: 1
-# def sum_a_b(a, b):
-#     return a + b
-#
-#
-# def a_div_b(a, b):
-#     return a / b
-#
-#
-# def a_exponential_b(a, b):
-#     return a ** b
-#
-#
-# print(sum_a_b(3, 5))
-# print(a_div_b(2, 3))
-# print(a_exponential_b(2, 3))
+# todo: 1
+def sum_a_b(a, b):
+    return a + b
 
 
-# # todo: 2
-#
-# from math import pi
-#
-#
-# def CaculateAreaCircle(r):
-#     return pi * r ** 2
-#
-#
-# print(CaculateAreaCircle(2))
+def a_div_b(a, b):
+    return a / b
 
-# # todo: 3
-# def KTNguyenTo(n):
-#     if n < 1:
-#         return 0
-#     for i in range(2, n):
-#         if n % i == 0:
-#             return 0
-#
-#     return 1
-#
-#
-# def XuatCacSoNguyenTo(start, end):
-#     print(f'Cac so nguyen to trong khoang [{start}, {end}] la: ')
-#     for i in range(start, end):
-#         if KTNguyenTo(i) == 1:
-#             print("{0} ".format(i))
-#
-# XuatCacSoNguyenTo(2, 10)
 
-# # todo: 4. Kiểm tra 1 số nguyên n có phải là số Fibonacci hay không
-#
-# def CheckIsFibonaci(n):
-#     a = 0
-#     b = 1
-#     while a <= n:
-#         if n == a:
-#             return True
-#         a, b = b, a + b
-#     return False
-#
-#
-# print(
-#     CheckIsFibonaci(13),
-#     CheckIsFibonaci(10),
-#     CheckIsFibonaci(8)
-# )
+def a_exponential_b(a, b):
+    return a ** b
 
-#
-# # todo: 5. Tìm số Fibonacci thứ n (dùng đệ quy và không đệ quy)
-# # todo: de quy
-#
+
+print(sum_a_b(3, 5))
+print(a_div_b(2, 3))
+print(a_exponential_b(2, 3))
+
+
+# todo: 2
+
+from math import pi
+
+
+def CaculateAreaCircle(r):
+    return pi * r ** 2
+
+
+print(CaculateAreaCircle(2))
+
+# todo: 3
+def KTNguyenTo(n):
+    if n < 1:
+        return 0
+    for i in range(2, n):
+        if n % i == 0:
+            return 0
+
+    return 1
+
+
+def XuatCacSoNguyenTo(start, end):
+    print(f'Cac so nguyen to trong khoang [{start}, {end}] la: ')
+    for i in range(start, end):
+        if KTNguyenTo(i) == 1:
+            print("{0} ".format(i))
+
+XuatCacSoNguyenTo(2, 10)
+
+# todo: 4. Kiểm tra 1 số nguyên n có phải là số Fibonacci hay không
+
+def CheckIsFibonaci(n):
+    a = 0
+    b = 1
+    while a <= n:
+        if n == a:
+            return True
+        a, b = b, a + b
+    return False
+
+
+print(
+    CheckIsFibonaci(13),
+    CheckIsFibonaci(10),
+    CheckIsFibonaci(8)
+)
+
+
+# todo: 5. Tìm số Fibonacci thứ n (dùng đệ quy và không đệ quy)
+# todo: de quy
 def FindFibonaciIndexN(n):
     if n == 0:
         return 0
@@ -185,9 +184,11 @@ def SumSquareRootOf2(n):
         return 0
     return sqrt(n) + SumSquareRootOf2(n - 1)
 
-
 print(
     SumSquareRootOf2(1),
     SumSquareRootOf2(3),
     SumSquareRootOf2(4)
 )
+
+
+
