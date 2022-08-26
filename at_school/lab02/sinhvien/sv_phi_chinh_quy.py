@@ -1,4 +1,4 @@
-from sinh_vien import SinhVien
+from .sinh_vien import SinhVien
 
 
 class SinhVienPhiChinhQuy(SinhVien):

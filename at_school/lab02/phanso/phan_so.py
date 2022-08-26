@@ -123,10 +123,10 @@ class DanhSachPhanSo:
                        reverse=reverse)
 
     def sapXepPhanSoTheoTu(self, reverse: bool = False) -> None:
-            self.dsps.sort(key=lambda ps: ps.tu, reverse=reverse)
+        self.dsps.sort(key=lambda ps: ps.tu, reverse=reverse)
 
-    def sapXepPhanSoTheoMau(self,reverse: bool = False) -> None:
-            self.dsps.sort(key=lambda ps: ps.mau, reverse=reverse)
+    def sapXepPhanSoTheoMau(self, reverse: bool = False) -> None:
+        self.dsps.sort(key=lambda ps: ps.mau, reverse=reverse)
 
 
 phanSo1 = PhanSo(3, 3)

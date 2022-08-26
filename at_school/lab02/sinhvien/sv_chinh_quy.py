@@ -1,4 +1,4 @@
-from sinh_vien import SinhVien
+from .sinh_vien import SinhVien
 
 
 class SinhVienChinhQuy(SinhVien):
@@ -9,5 +9,3 @@ class SinhVienChinhQuy(SinhVien):
 
     def __str__(self) -> str:
         return super().__str__() + f"\t{self.diemRL}"
-
-
