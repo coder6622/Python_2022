@@ -98,7 +98,7 @@ class DanhSachPhanSo:
                 result = result.__add__(ps)
         return result
 
-    def xoaPSX(self, phan_so: PhanSo):
+    def xoaPSX(self, phan_so: PhanSo) -> None:
         # vt = self.timTatCaVTPhanSoX(phan_so)
         # n = 0
         # for i in vt:
@@ -111,21 +111,21 @@ class DanhSachPhanSo:
                 print(f'\nXoa thanh cong phan so {ps}', end="")
         print('\nXoa xong')
 
-    def xoaTatCaPSCoTuLaX(self, tu: int):
+    def xoaTatCaPSCoTuLaX(self, tu: int) -> None:
         for ps in self.dsps:
             if ps.tu == tu:
                 self.dsps.remove(ps)
                 print(f'\nXoa thanh cong phan so {ps}', end="")
         print('\nXoa xong')
 
-    def sapXepPhanSo(self, reverse: bool = False):
+    def sapXepPhanSo(self, reverse: bool = False) -> None:
         self.dsps.sort(key=lambda ps: ps.giaTriNguyenCuaPhanSo(),
                        reverse=reverse)
 
-    def sapXepPhanSoTheoTu(self, reverse: bool = False):
+    def sapXepPhanSoTheoTu(self, reverse: bool = False) -> None:
             self.dsps.sort(key=lambda ps: ps.tu, reverse=reverse)
 
-    def sapXepPhanSoTheoMau(self,reverse: bool = False):
+    def sapXepPhanSoTheoMau(self,reverse: bool = False) -> None:
             self.dsps.sort(key=lambda ps: ps.mau, reverse=reverse)
 
 

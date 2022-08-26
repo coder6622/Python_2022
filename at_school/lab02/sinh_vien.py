@@ -4,17 +4,16 @@ import datetime
 class SinhVien:
     truong = "Dai hoc Da Lat"
 
-    def __init__(self, *args: str) -> None:
+    def __init__(self, *args) -> None:
         if len(args) == 3:
-            self.__maSo = args[0]
-            self.__hoTen = args[1]
-            self.__ngaySinh = self.dateParse(args[2])
+            self.__maSo: int = args[0]
+            self.__hoTen: str = args[1]
+            self.__ngaySinh: datetime = self.dateParse(args[2])
         elif len(args) == 1:
             dong = args[0].strip().split('%')
-            self.__maSo = dong[0]
-            self.__hoTen = dong[1]
-            # # # self.__ngaySinh = self.dateParse(dong[2].__str__())
-            self.__ngaySinh = self.dateParse(dong[2])
+            self.__maSo: int = dong[0]
+            self.__hoTen: str = dong[1]
+            self.__ngaySinh: datetime = self.dateParse(dong[2])
 
     @staticmethod
     def dateParse(date: str):
@@ -63,11 +62,7 @@ class DSSinhVien:
         f = open(ten_file)
         dong = f.readlines()
         for i in dong:
-            sv = SinhVien(i)
-            self.dssv.append(sv)
-        # for line in dong:
-        #     print(line)
-        #     self.dssv.append(SinhVien(line))
+            self.dssv.append(SinhVien(i))
 
     def xuat(self):
         for sinh_vien in self.dssv:
@@ -113,7 +108,7 @@ class DSSinhVien:
 #
 # sv4 = SinhVien(2014402, 'My Loc',
 #                "04/04/2002")
-dsSinhVien = DSSinhVien()
+# dsSinhVien = DSSinhVien()
 # dsSinhVien.themSinhVien(sv1)
 # dsSinhVien.themSinhVien(sv2)
 # dsSinhVien.themSinhVien(sv3)
@@ -131,9 +126,9 @@ dsSinhVien = DSSinhVien()
 #     print(sv)
 #
 
-print('Danh sach sinh vien la: ')
-dsSinhVien.docFile('sinh_vien.txt')
-dsSinhVien.xuat()
+# print('Danh sach sinh vien la: ')
+# dsSinhVien.docFile('sinh_vien.txt')
+# dsSinhVien.xuat()
 
 # ngayTK = '06/08/2002'
 # print(f'Sinh vien sinh truoc ngay {ngayTK} la: ')
