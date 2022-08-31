@@ -3,8 +3,11 @@ from .hinh_tron import HinhTron
 
 
 class DanhSachHinhHoc:
-    def __init__(self) -> None:
-        self.dshh = []
+    def __init__(self, ds=None) -> None:
+        if ds is not None:
+            self.dshh = list(ds)
+        else:
+            self.dshh = []
 
     def themHinhHoc(self, *args: HinhHoc) -> None:
         for i in args:
@@ -55,8 +58,9 @@ class DanhSachHinhHoc:
             return True
         return False
 
-    def timHinhTheoDienTich(self, dt: float) -> list[HinhHoc]:
-        return [hh for hh in self.dshh if hh.tinhDienTich() == dt]
+    def timHinhTheoDienTich(self, dt: float):
+        return DanhSachHinhHoc(
+            [hh for hh in self.dshh if hh.tinhDienTich() == dt])
 
     def xoaHinh(self, h: HinhHoc) -> bool:
         vt = self.timVTDauTienCuaHinh(h)
@@ -71,12 +75,6 @@ class DanhSachHinhHoc:
             if isinstance(self.dshh[i - n], loai_hinh):
                 del self.dshh[i - n]
                 n += 1
-        #         todo: bug: run wrong
-        # for hh in self.dshh:
-        #     print(hh)
-        #     if isinstance(hh, loai_hinh):
-        #         self.dshh.remove(hh)
-        #         print('hello')
 
     def xuatHinhTheoChieuTangGiam(self, kieu, giam=False) -> None:
         ds_hinh_theo_kieu = [hh for hh in self.dshh if isinstance(hh, kieu)]
@@ -90,4 +88,3 @@ class DanhSachHinhHoc:
             if isinstance(hh, kieu):
                 result += hh.tinhDienTich()
         return result
-

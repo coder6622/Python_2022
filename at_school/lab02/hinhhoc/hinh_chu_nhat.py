@@ -4,23 +4,23 @@ from .hinh_hoc import HinhHoc
 class HinhChuNhat(HinhHoc):
     def __init__(self, rong: float, dai: float) -> None:
         super(HinhChuNhat, self).__init__(rong)
-        self.dai = dai
+        self._dai = dai
 
     @property
     def chieuDai(self) -> float:
-        return self.dai
+        return self._dai
 
     @property
     def chieuRong(self) -> float:
-        return self.canh
+        return self._canh
 
     def __str__(self) -> str:
-        return f"Hinh chu nhat co chieu rong: {self.chieuRong} va chieu dai:" \
-               f" {self.chieuDai}"
+        return f"Hinh chu nhat co chieu rong: {self._canh} va chieu dai:" \
+               f" {self._dai}"
 
     def xuat(self) -> None:
-        print(f"Hinh chu nhat co chieu rong: {self.chieuRong} va c"
-              f"hieu dai: {self.chieuDai}")
+        print(f"Hinh chu nhat co chieu rong: {self._canh} va c"
+              f"hieu dai: {self._dai}")
 
     def tinhDienTich(self) -> float:
-        return self.chieuDai * self.chieuRong
+        return self._dai * self._canh

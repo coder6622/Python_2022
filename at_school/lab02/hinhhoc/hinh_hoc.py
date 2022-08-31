@@ -2,8 +2,8 @@ from abc import abstractmethod, ABC
 
 
 class HinhHoc(ABC):
-    def __init__(self, canh):
-        self.canh = canh
+    def __init__(self, cd):
+        self._canh = cd
 
     @abstractmethod
     def tinhDienTich(self) -> float:

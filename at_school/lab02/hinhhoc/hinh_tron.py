@@ -9,13 +9,13 @@ class HinhTron(HinhHoc):
 
     @property
     def banKinh(self) -> float:
-        return self.canh
+        return self._canh
 
     def __str__(self) -> str:
-        return f"Hinh tron co ban kinh la {self.banKinh}"
+        return f"Hinh tron co ban kinh la {self._canh}"
 
     def xuat(self) -> None:
-        print(f"Hinh tron co ban kinh la {self.banKinh}")
+        print(f"Hinh tron co ban kinh la {self._canh}")
 
     def tinhDienTich(self) -> float:
-        return math.pi * self.banKinh ** 2
+        return math.pi * self._canh ** 2

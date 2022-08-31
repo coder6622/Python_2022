@@ -5,7 +5,7 @@ def GiaiThua(n):
     return n * GiaiThua(n - 1)
 
 
-# print(GiaiThua(10))
+print(GiaiThua(994))
 
 
 # todo: b Fibonanci
@@ -41,10 +41,10 @@ def TinhTongCacSoLeTrongMang(danh_sach):
     phan_tu_cuoi = len(danh_sach) - 1
     a = danh_sach[phan_tu_cuoi]
     if a & 1 == 0:
-        danh_sach.pop()
+        del danh_sach[-1]
         return TinhTongCacSoLeTrongMang(danh_sach)
 
-    danh_sach.pop()
+    del danh_sach[-1]
     return a + TinhTongCacSoLeTrongMang(danh_sach)
 
 

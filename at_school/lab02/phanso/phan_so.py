@@ -1,6 +1,3 @@
-import math
-
-
 class PhanSo:
     def __init__(self, tu: int, mau: int) -> None:
         if mau == 0:
@@ -9,12 +6,58 @@ class PhanSo:
         self.mau = mau
         self.rutGon()
 
-    def giaTriNguyenCuaPhanSo(self) -> float:
+    def tinhGiaTriCuaPhanSo(self) -> float:
         return self.tu / self.mau
+
+    @staticmethod
+    def my_gcd_1(num1: int, num2: int):
+        ucln = 1
+        if num1 < num2:
+            num = num1
+        else:
+            num = num2
+        for i in range(2, num + 1):
+            if num1 % i == 0 and num2 % i == 0:
+                ucln = i
+        return ucln
+
+    # @staticmethod
+    # def my_gcd_2(num1: int, num2: int):
+    #     while num1 != num2:
+    #         if num1 > num2:
+    #             num1 -= num2
+    #         else:
+    #             num2 -= num1
+    #     return num1
+
+    @staticmethod
+    def my_gcd3(num1: int, num2: int):
+        while num2:
+            num1, num2 = num2, num1 % num2
+        return num1
+
+    def my_gcd_4(self, num1: int, num2: int):
+        if num2 == 0:
+            return num1
+        else:
+            return self.my_gcd_4(num2, num1 % num2)
+
+    def my_gcd_5(self, num1: int, num2: int):
+        if num1 == 0 or num2 == 0:
+            return num1 + num2
+
+        if num1 == num2:
+            return num1
+
+        if num1 > num2:
+            return self.my_gcd_5(num1 - num2, num2)
+
+        else:
+            return self.my_gcd_5(num1, num2 - num1)
 
     def rutGon(self):
         # todo: gcd: find the  the greatest common divisor of the two integers
-        gcd = math.gcd(self.tu, self.mau)
+        gcd = self.my_gcd_4(self.tu, self.mau)
         if gcd != 1:
             self.tu = self.tu // gcd
             self.mau = self.mau // gcd
@@ -68,13 +111,13 @@ class DanhSachPhanSo:
         # return count
         # todo: c2
         return sum(
-            1 for ps in self.dsps if ps.giaTriNguyenCuaPhanSo() < 0)
+            1 for ps in self.dsps if ps.tinhGiaTriCuaPhanSo() < 0)
 
     def timTatCaVTPhanSoX(self, phan_so: PhanSo):
         result = []
         for i in range(len(self.dsps)):
-            if self.dsps[i].giaTriNguyenCuaPhanSo() == \
-                    phan_so.giaTriNguyenCuaPhanSo():
+            if self.dsps[i].tinhGiaTriCuaPhanSo() == \
+                    phan_so.tinhGiaTriCuaPhanSo():
                 result.append(i)
         return result
 
@@ -88,13 +131,17 @@ class DanhSachPhanSo:
         #         result = ps
         # return result
         return min([ps for ps in self
-                   .dsps if ps.giaTriNguyenCuaPhanSo() > 0],
-                   key=lambda ps: ps.giaTriNguyenCuaPhanSo())
+                   .dsps if ps.tinhGiaTriCuaPhanSo() > 0],
+                   key=lambda ps: ps.tinhGiaTriCuaPhanSo())
+
+    @staticmethod
+    def ktPhanSoAm(ps: PhanSo):
+        return ps.tu * ps.mau > 0
 
     def tinhTongCacPhanSoAm(self) -> PhanSo:
         result = PhanSo(0, 1)
         for ps in self.dsps:
-            if ps.giaTriNguyenCuaPhanSo() < 0:
+            if self.ktPhanSoAm(ps):
                 result = result.__add__(ps)
         return result
 
@@ -106,7 +153,7 @@ class DanhSachPhanSo:
         #     n += 1
 
         for ps in self.dsps:
-            if ps.giaTriNguyenCuaPhanSo() == phan_so.giaTriNguyenCuaPhanSo():
+            if ps.tinhGiaTriCuaPhanSo() == phan_so.tinhGiaTriCuaPhanSo():
                 self.dsps.remove(ps)
                 print(f'\nXoa thanh cong phan so {ps}', end="")
         print('\nXoa xong')
@@ -119,7 +166,7 @@ class DanhSachPhanSo:
         print('\nXoa xong')
 
     def sapXepPhanSo(self, reverse: bool = False) -> None:
-        self.dsps.sort(key=lambda ps: ps.giaTriNguyenCuaPhanSo(),
+        self.dsps.sort(key=lambda ps: ps.tinhGiaTriCuaPhanSo(),
                        reverse=reverse)
 
     def sapXepPhanSoTheoTu(self, reverse: bool = False) -> None:
@@ -174,7 +221,7 @@ dsPhanSo.xuat()
 # dsPhanSo.xoaTatCaPSCoTuLaX(20)
 # print(f'\nMang sau khi xoa: ')
 
-print('Sau khi sap xep: ')
+print('\nSau khi sap xep: ')
 # todo: if true giam
 #  mac dinh tang
 # dsPhanSo.sapXepPhanSo()

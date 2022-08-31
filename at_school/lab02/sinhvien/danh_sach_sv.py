@@ -26,12 +26,12 @@ class DanhSachSv:
                 return i
         return -1
 
-    def timSVTheoLoai(self, loai: str):
-        if loai == 'chinhquy':
-            return [sinh_vien for sinh_vien in self.dssv if isinstance(
-                sinh_vien, SinhVienChinhQuy)]
-        return [sinh_vien for sinh_vien in self.dssv if
-                isinstance(sinh_vien, SinhVienPhiChinhQuy)]
+    def timSVTheoLoai(self, loai_sv):
+        return [sinh_vien for sinh_vien in self.dssv if isinstance(
+            sinh_vien, loai_sv)]
+
+    # return [sinh_vien for sinh_vien in self.dssv if
+    #         isinstance(sinh_vien, SinhVienPhiChinhQuy)]
 
     def timSVCoDiemRenLuyenTren(self, diem_rl):
         return [sinh_vien for sinh_vien in self.dssv if
