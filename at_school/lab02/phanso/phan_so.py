@@ -1,3 +1,6 @@
+import sys
+
+
 class PhanSo:
     def __init__(self, tu: int, mau: int) -> None:
         if mau == 0:
@@ -8,6 +11,9 @@ class PhanSo:
 
     def tinhGiaTriCuaPhanSo(self) -> float:
         return self.tu / self.mau
+
+    def ktPhanSoAm(self):
+        return self.tu * self.mau < 0
 
     @staticmethod
     def my_gcd_1(num1: int, num2: int):
@@ -111,7 +117,7 @@ class DanhSachPhanSo:
         # return count
         # todo: c2
         return sum(
-            1 for ps in self.dsps if ps.tinhGiaTriCuaPhanSo() < 0)
+            1 for ps in self.dsps if ps.ktPhanSoAm())
 
     def timTatCaVTPhanSoX(self, phan_so: PhanSo):
         result = []
@@ -122,26 +128,22 @@ class DanhSachPhanSo:
         return result
 
     def timPhanSoDuongNhoNhat(self) -> PhanSo:
-        # nho_nhat = 23628734638746384.0
-        # result = PhanSo(0, 1)
-        # for ps in self.dsps:
-        #     gia = ps.giaTriNguyenCuaPhanSo()
-        #     if 0.0 < gia < nho_nhat:
-        #         nho_nhat = gia
-        #         result = ps
-        # return result
-        return min([ps for ps in self
-                   .dsps if ps.tinhGiaTriCuaPhanSo() > 0],
-                   key=lambda ps: ps.tinhGiaTriCuaPhanSo())
-
-    @staticmethod
-    def ktPhanSoAm(ps: PhanSo):
-        return ps.tu * ps.mau > 0
+        nho_nhat = sys.maxsize
+        result = PhanSo(0, 1)
+        for ps in self.dsps:
+            gia = ps.tinhGiaTriCuaPhanSo()
+            if 0.0 < gia < nho_nhat:
+                nho_nhat = gia
+                result = ps
+        return result
+        # return min([ps for ps in self
+        #            .dsps if ps.tinhGiaTriCuaPhanSo() > 0],
+        #            key=lambda ps: ps.tinhGiaTriCuaPhanSo())
 
     def tinhTongCacPhanSoAm(self) -> PhanSo:
         result = PhanSo(0, 1)
         for ps in self.dsps:
-            if self.ktPhanSoAm(ps):
+            if ps.ktPhanSoAm():
                 result = result.__add__(ps)
         return result
 
@@ -206,7 +208,7 @@ dsPhanSo.themPhanSo(phanSo1, phanSo2, phanSo3, phanSo4, phanSo5,
 print("Danh sach phan so la: ")
 dsPhanSo.xuat()
 # print(f"So phan so am la: {dsPhanSo.demPSAm()}")
-# print(f"Phan so duong nho nhat la: {dsPhanSo.timPhanSoDuongNhoNhat()}")
+print(f"Phan so duong nho nhat la: {dsPhanSo.timPhanSoDuongNhoNhat()}")
 
 # phanSoTim = PhanSo(2, 3)
 # print(f"Cac vi tri phan so {phanSoTim} la: ")
@@ -214,7 +216,7 @@ dsPhanSo.xuat()
 # for i in kq:
 #     print(i + 1, end="\t")
 
-# print(f'Tong cac phan so am la: {dsPhanSo.tinhTongCacPhanSoAm()}')
+print(f'\nTong cac phan so am la: {dsPhanSo.tinhTongCacPhanSoAm()}')
 
 # dsPhanSo.xoaPSX(PhanSo(2, 3))
 
