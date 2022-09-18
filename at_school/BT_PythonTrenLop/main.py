@@ -1,8 +1,6 @@
-def myfunc(n):
-    print(n)
-    return lambda a: a * n
+sum = 0
+for i in range(5):
+    sum += i
+    print(sum)
 
 
-mydoubler = myfunc(2)(11)
-# print(mydoubler(11))
-print(mydoubler)

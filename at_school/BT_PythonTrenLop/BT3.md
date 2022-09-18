@@ -169,9 +169,12 @@ while i < 5:
 ```python
 sum = 0
 for i in range(5):
-  sum += i
-print(sum)
+    sum += i
+    print(sum)
+
 ```
+
+- Kết quả: `0 1 3 6 10`
 
 # 17. Thay đổi “apple” thành “kiwi” của list sau:
 

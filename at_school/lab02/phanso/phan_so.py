@@ -2,7 +2,7 @@ import sys
 
 
 class PhanSo:
-    def __init__(self, tu: int, mau: int) -> None:
+    def __init__(self, tu: int = 0, mau: int = 1) -> None:
         if mau == 0:
             raise ArithmeticError('Phan so khong the co mau bang 0')
         self.tu = tu
@@ -62,7 +62,7 @@ class PhanSo:
             return self.my_gcd_5(num1, num2 - num1)
 
     def rutGon(self):
-        # todo: gcd: find the  the greatest common divisor of the two integers
+        # todo: gcd: find the greatest common divisor of the two integers
         gcd = self.my_gcd_4(self.tu, self.mau)
         if gcd != 1:
             self.tu = self.tu // gcd
@@ -73,6 +73,31 @@ class PhanSo:
                         other.mau)
         result.rutGon()
         return result
+
+    def bcnn(self, a, b):
+        return int(a * b) / self.my_gcd_4(a, b)
+
+    def __lt__(self, other):
+        if not isinstance(other, PhanSo):
+            other = PhanSo(other, 1)
+        mau_chung = self.bcnn(self.mau, other.mau)
+        print(f"UCLN cua {self.mau} va {other.mau} la: {mau_chung}")
+        if other.mau == mau_chung:
+            return self.tu * mau_chung < other.tu
+        elif self.mau == mau_chung:
+            return self.tu < other.tu * mau_chung
+        return self.tu * mau_chung < other.tu * mau_chung
+
+    def __gt__(self, other):
+        if not isinstance(other, PhanSo):
+            other = PhanSo(other, 1)
+        mau_chung = self.bcnn(self.mau, other.mau)
+        print(f"UCLN cua {self.mau} va {other.mau} la: {mau_chung}")
+        if other.mau == mau_chung:
+            return self.tu * mau_chung > other.tu
+        elif self.mau == mau_chung:
+            return self.tu > other.tu * mau_chung
+        return self.tu * mau_chung > other.tu * mau_chung
 
     def __sub__(self, other):
         result = PhanSo(self.tu * other.mau - self.mau * other.tu,
@@ -116,8 +141,9 @@ class DanhSachPhanSo:
         #         count += 1
         # return count
         # todo: c2
-        return sum(
-            1 for ps in self.dsps if ps.ktPhanSoAm())
+        # return sum(
+        #     1 for ps in self.dsps if ps.ktPhanSoAm())
+        return len([ps for ps in self.dsps if ps.ktPhanSoAm()])
 
     def timTatCaVTPhanSoX(self, phan_so: PhanSo):
         result = []
@@ -128,13 +154,14 @@ class DanhSachPhanSo:
         return result
 
     def timPhanSoDuongNhoNhat(self) -> PhanSo:
-        nho_nhat = sys.maxsize
-        result = PhanSo(0, 1)
+        result = PhanSo(sys.maxsize, 1)
         for ps in self.dsps:
-            gia = ps.tinhGiaTriCuaPhanSo()
-            if 0.0 < gia < nho_nhat:
-                nho_nhat = gia
-                result = ps
+            print(ps)
+            if ps > 0:
+                print(ps)
+                if ps < result:
+                    print(ps)
+                    result = ps
         return result
         # return min([ps for ps in self
         #            .dsps if ps.tinhGiaTriCuaPhanSo() > 0],
@@ -178,8 +205,8 @@ class DanhSachPhanSo:
         self.dsps.sort(key=lambda ps: ps.mau, reverse=reverse)
 
 
-phanSo1 = PhanSo(3, 3)
-phanSo2 = PhanSo(-5, 2)
+phanSo1 = PhanSo(-2, 3)
+phanSo2 = PhanSo(3, 5)
 phanSo3 = PhanSo(100, 5)
 phanSo4 = PhanSo(100, 100)
 phanSo5 = PhanSo(2, 3)
@@ -188,7 +215,10 @@ phanSo7 = PhanSo(2, 3)
 phanSo8 = PhanSo(-9, 3)
 phanSo9 = PhanSo(-100, 3)
 phanSo10 = PhanSo(100, 4)
-# print(f'{phanSo1} + {phanSo2} = {phanSo1.__add__(phanSo2)} ')
+phanSo11 = PhanSo()
+phanSo11.tu = 10
+phanSo11.mau = 2
+print(f'{phanSo1} + {phanSo2} = {phanSo1.__add__(phanSo2)} ')
 # print(f'{phanSo1} - {phanSo2} = {phanSo1.__sub__(phanSo2)} ')
 # print(f'{phanSo1} * {phanSo2} = {phanSo1.__mul__(phanSo2)} ')
 # print(f'{phanSo1} : {phanSo2} = {phanSo1.__truediv__(phanSo2)} ')
@@ -204,10 +234,10 @@ phanSo10 = PhanSo(100, 4)
 dsPhanSo = DanhSachPhanSo()
 dsPhanSo.themPhanSo(phanSo1, phanSo2, phanSo3, phanSo4, phanSo5,
                     phanSo6,
-                    phanSo7, phanSo8, phanSo9, phanSo10)
+                    phanSo7, phanSo8, phanSo9, phanSo10, phanSo11)
 print("Danh sach phan so la: ")
 dsPhanSo.xuat()
-# print(f"So phan so am la: {dsPhanSo.demPSAm()}")
+print(f"\nSo phan so am la: {dsPhanSo.demPSAm()}")
 print(f"Phan so duong nho nhat la: {dsPhanSo.timPhanSoDuongNhoNhat()}")
 
 # phanSoTim = PhanSo(2, 3)
