@@ -1,5 +1,4 @@
-from tkinter import BOTH, Tk, Entry, X, LEFT, CENTER
-from tkinter.ttk import Frame, Label
+from tkinter import *
 
 
 class Example(Frame):
@@ -11,37 +10,40 @@ class Example(Frame):
 
     def initUI(self):
         self.parent.title("Form Example")
-        self.pack(fill=BOTH, expand=1)
+        self.pack(fill=BOTH, expand=True)
 
         frame1 = Frame(self)
         frame1.pack(fill=X)
+        frame1.grid_rowconfigure(0, weight=5)
 
         lbl1 = Label(frame1, text="Title", width=6)
-        lbl1.pack(side=LEFT, pady=5, padx=5)
+        lbl1.grid(row=0, column=0)
 
         entry1 = Entry(frame1)
-        entry1.pack(fill=X, padx=5, expand=True)
+        entry1.grid(row=0, column=1)
 
         frame2 = Frame(self)
         frame2.pack(fill=X)
 
         lbl2 = Label(frame2, text="Auther", width=6)
-        lbl2.pack(side=LEFT, padx=5, pady=5)
+        lbl2.grid(row=0, column=0)
 
         entry2 = Entry(frame2)
-        entry2.pack(fill=X, padx=5, expand=True)
+        entry2.grid(row=0, column=1)
 
         frame3 = Frame(self)
         frame3.pack(fill=BOTH, expand=True)
 
         lbl3 = Label(frame3, text="Review", width=6)
-        lbl3.pack(side=LEFT, anchor=CENTER, padx=5, pady=5)
+        lbl3.grid(row=0, column=0)
 
         entry3 = Entry(frame3)
-        entry3.pack(fill=BOTH, padx=5, pady=5, expand=True)
+        entry3.grid(row=0, column=1)
 
 
 root = Tk()
-root.geometry('300x300+300+300')
+# root.geometry('300x300+300+300')
 app = Example(root)
+# app.grid_columnconfigure(0, weight=100)
+# root.grid_rowconfigure(0, weight=2)
 app.mainloop()
