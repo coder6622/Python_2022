@@ -1,18 +1,14 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  
 
-df = pd.read_csv('sales_data.csv')
-print(df.info())
-profitList = df['total_profit'].tolist()
-print(profitList)
-monthList = df['month_number'].tolist()
-print(monthList)
+df = pd.read_csv("sales_data.csv")
+# monthList  = df ['month_number'].tolist()
 
-plt.figure("Bieu do doan thang")
-plt.plot(monthList, profitList, linestyle='-', marker='s', color='red')
-plt.xlabel('Thang')
-plt.xticks(monthList)
-plt.ylabel('Loi nhuan ($)')
-plt.yticks([100000, 200000, 300000, 400000, 500000])
-plt.title('Loi nhuan hang thang nam 2021')
+labels = ['FaceCream', 'FaseWash', 'ToothPaste', 'Bathing soap', 'Shampoo', 'Moisturizer']
+salesData   = [df ['facecream'].sum(), df ['facewash'].sum(), df ['toothpaste'].sum(), 
+         df ['bathingsoap'].sum(), df ['shampoo'].sum(), df ['moisturizer'].sum()]
+plt.axis("equal")
+plt.pie(salesData, labels=labels, autopct='%1.1f%%')
+plt.legend(loc='center right', )
+plt.title('Sales data')
 plt.show()

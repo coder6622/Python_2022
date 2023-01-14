@@ -251,7 +251,6 @@ def CheckIsFibonaci(n):
 # InTamGiac(8)
 # InTamGiac(9)
 
-
 # # todo: 11. Đổi giờ - phút – giây: thời gian đầu vào là giây được đổi thành
 # #  giờ, phút, giây. Xuất kết quả ra màn hình dưới dạng: giờ:phút:giây. Ví dụ:
 # #  soGiay = 3770 thì xuất ra màn hình 1:2:50
